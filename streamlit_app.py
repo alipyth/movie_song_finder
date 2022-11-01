@@ -11,7 +11,7 @@ with st.form('find song'):
     if submited:
         found = requests.get(f'https://www.tunefind.com/search/site?q={query}')
         soup = BeautifulSoup(found.text , 'html.parser')
-        for i in soup.select('.tf-search-highlight'):
+        for i in soup.select('body > div.Tunefind__Container.Tunefind__SolidNav > div.container.tf-site-search > div:nth-child(1) > div:nth-child(2) > ul > li:nth-child(1) > a'):
             high = i.text.replace(' ','-').replace('(','').replace(')','')
             st.title(f'i Found It :) - {high}')
             #movie = st.write(f"https://www.tunefind.com{i['href']}")
